@@ -11,7 +11,6 @@ Docker是开发以及运维人员通过容器来开发，部署和运行应用�
 首先，容器是通过运行镜像来启动的。而镜像则是一个可执行的包，里面包含所有运行这个应用所需要的代码，运行环境，库，环境变量以及配置文件等等，容器是镜像运行时的一个实例。<br>
 `docker images`列出镜像，`docker ps`列出运行中的容器。
 
-
 ## 准备
 1. docker search centos
 
@@ -42,16 +41,3 @@ Docker是开发以及运维人员通过容器来开发，部署和运行应用�
 * service
 	1. yum list | grep initscripts
 	2. yum install initscripts
-
-* mysql5.7 https://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/
-	1. wget https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm
-	2. rpm -Uvh mysql80-community-release-el7-1.noarch.rpm
-	3. yum repolist all | grep mysql
-	4. yum-config-manager --disable mysql80-community
-	5. yum-config-manager --enable mysql57-community
-	6. yum repolist enabled | grep mysql
-	7. yum install mysql-community-server
-	8. service mysqld start
-	10. service mysqld status
-	11. mysql -uroot -p
-	12. ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass4!';
