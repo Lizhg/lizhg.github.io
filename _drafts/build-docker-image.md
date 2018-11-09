@@ -54,16 +54,16 @@ docker rm contaienr_id
 
 2. 运行centos镜像
 ``````
-	～ docker run -it \
+	# -d表示以Detached模式运行，-i表示即使不是attached???也保持标准输入打开，-t表示分配一个伪终端，--name表示容器名称，--volume为挂载目录
+	～ docker run -dit \
 		--name my-centos \
 		--volume /srv/centos/tmp:/tmp \
 		centos /bin/bash
 ``````
 
-3.
-进入my-centos容器
-* 安装时需要用到wget
-	yum install wget
+
+
+
 
 * java
 	1. yum -y list java*
