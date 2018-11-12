@@ -61,14 +61,17 @@ docker rm contaienr_id
 		centos /bin/bash
 ``````
 
+3. 安装Java
+``````
+	# 安装OpenJDK 8 JRE
+	~ yum install java-1.8.0-openjdk
 
+	# 安装OpenJDK 8 JDK
+	~ yum install java-1.8.0-openjdk-devel
 
-
-
-* java
-	1. yum -y list java*
-	2. yum -y install java-1.8.0-openjdk*
-	3. java -version
+	# 验证
+	～ java -version
+``````
 
 * tomcat: https://tecadmin.net/install-apache-tomcat-9-on-centos/
 	1. cd /usr/local
