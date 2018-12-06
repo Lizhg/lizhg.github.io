@@ -13,22 +13,22 @@ Docker是开发以及运维人员通过容器来开发，部署和运行应用�
 ### 基本命令
 ``````
 ## 列出所有镜像
-docker images
+➜ docker images
 
 ## 列出所有容器
-docker container ls -a
+➜ docker container ls -a
 
 ## 列出运行中的容器
-docker ps
+➜ docker ps
 
 ## 运行指定镜像
-docker run hello-world
+➜ docker run hello-world
 
 ## 停止运行容器
-docker stop container_id
+➜ docker stop container_id
 
 ## 移除本地容器
-docker rm contaienr_id
+➜ docker rm contaienr_id
 
 ``````
 
