@@ -31,6 +31,7 @@ INSTRUCTION arguments
 ```
 
 * Dockerfile文件必须以`FROM`命令开始，并且指定一个基准镜像。`FROM <image>[:<tag>] [AS <name>]`
+
 ```shell
 # redis为构建的基准镜像
 FROM redis
@@ -69,6 +70,7 @@ docker run -p 80:80/tcp -p 80:80/udp
 * `ADD`命令将指定路径的文件或文件夹复制到**镜像**内指定路径下。
 	+ `ADD [--chown=<user>:<group>] <src>... <dest>`
 	+ `ADD [--chown=<user>:<group>] ["<src>",... "<dest>"]`
+
 ```shell
 # 添加文件到`WORKDIR`/relativeDir/
 ADD test relativeDir/

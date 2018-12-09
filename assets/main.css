@@ -389,8 +389,8 @@ table {
       .post-content h6 {
         font-size: 18px; } }
 
-  .post-content {
-    color: #333;
+  .post-content :not(pre) code {
+    color: #fff;
   }
   .post-content h1,
   .post-content h2,
