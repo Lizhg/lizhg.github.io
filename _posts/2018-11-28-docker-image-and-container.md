@@ -32,10 +32,10 @@ Docker是开发以及运维人员通过容器来开发，部署和运行应用�
 
 ```
 
-## 场景
-搭建一个Web环境，其中Java版本要求为1.8，并且使用Tomcat9。根据这个要求我们首先需要获取到一个centos镜像，然后在基于该镜像搭建我们所需要的环境。
+------
 
-## 如何获取以及使用Docker镜像
+## 使用场景
+假如我们要搭建一个Web环境，其中Java版本要求为1.8，Tomcat版本为9。根据这个要求我们首先需要获取到一个centos镜像，然后在基于该镜像搭建我们所需要的环境。
 
 1. 获取centos镜像
 ```shell
@@ -46,13 +46,13 @@ Docker是开发以及运维人员通过容器来开发，部署和运行应用�
 	ansible/centos7-ansible   Ansible on Centos7                              119                  [OK]
 	jdeathe/centos-ssh        CentOS-6 6.10 x86_64 / CentOS-7 7.5.1804 x86…   99                   [OK]
 
-	# 通常选择star较高的镜像
+	# 通常选择官方或star数较高的镜像
 	➜ docker pull centos
 ```
 
 2. 运行centos镜像
 ```shell
-	# -d表示以Detached模式运行，-i表示即使不是attached???也保持标准输入打开，-t表示分配一个伪终端，--name表示容器名称，
+	# -d表示以Detached模式运行，-i表示即使不是attached模式也保持标准输入打开，-t表示分配一个伪终端，--name表示容器名称，
 	# --volume为挂载目录，-p将端口从容器绑定到宿主机上，这里是将容器的8080端口绑定到宿主机的8000端口
 	➜ docker run -dit \
 		--name my-centos \
@@ -101,7 +101,7 @@ Docker是开发以及运维人员通过容器来开发，部署和运行应用�
 	Tomcat started.
 ```
 
-5. 为了方便以后重复使用这个环境，可以选择将该容器制作成镜像
+5. 如果以后需要重复使用这个环境，可以使用`docker commit`命令将该容器制作成镜像
 ```shell
 	# base-os为仓库名，v1为标签
 	➜ docker commit my-centos base-os:v1
