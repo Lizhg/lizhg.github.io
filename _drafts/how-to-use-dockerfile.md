@@ -21,10 +21,10 @@ Sending build context to Docker daemon  6.51 MB
 ➜ docker build -f /path/to/a/Dockerfile .
 ```
 
-
 ## 编写Dockerfile
 
-### 基本规则
+基本规则:
+
 * 为了更容易区分命令与参数，通常将命令大写
 ```shell
 INSTRUCTION arguments
@@ -83,4 +83,4 @@ ADD test /absoluteDir/
 
 ## 引用
 
-https://docs.docker.com/engine/reference/builder/[https://docs.docker.com/engine/reference/builder/]
+* [https://docs.docker.com/engine/reference/builder](https://docs.docker.com/engine/reference/builder)
