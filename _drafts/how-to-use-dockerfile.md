@@ -5,9 +5,9 @@ categories: docker
 ---
 
 ## 关于Dockerfile
-Dockerfile是一个配置文件，所有在配置镜像中能使用的命令都能在Dockerfile中进行配置。Docker能读取Dockerfile中的指令自动构建镜像。
+在构建镜像时，可以选择使用`Dockerfile`来构建。Docker会读取`Dockerfile`中的指令自动构建镜像。所有命令行中可以使用的Docker命令都能在`Dockerfile`中使用。
 
-当指定`docker build path`命令时，docker会先将当前环境发送到Docker daemon(Docker守护进程)，注意这里的当前环境指的是path目录，`.`代表当前目录。
+`docker build path`命令会在`path`目录下找到`Dockerfile`，然后执行`Dockerfile`中的指令；docker会先将当前环境发送到Docker daemon(Docker守护进程)，注意这里的当前环境指的是path目录，`.`代表当前目录。
 
 大多数情况下，path最好是一个干净的文件夹，只包含Dockerfile以及其他构建所必需的文件。
 
@@ -25,23 +25,27 @@ Sending build context to Docker daemon  6.51 MB
 
 基本规则:
 
-* 为了更容易区分命令与参数，通常将命令大写
+* `Dockerfile`指令不区分大小写，但是为了更容易区分命令与参数，通常将命令大写
 ```shell
+# Comment
 INSTRUCTION arguments
 ```
 
-* Dockerfile文件必须以`FROM`命令开始，并且指定一个基准镜像。`FROM <image>[:<tag>] [AS <name>]`
+* `FROM`指令会初始化构建环境并设置基础镜像，后续的指令都将在这个环境下得到执行。
+	+ `FROM <image> [AS <name>]`
+	+ `FROM <image>[:<tag>] [AS <name>]`
+	+ `FROM <image>[@<digest>] [AS <name>]`
 
-```shell
-# redis为构建的基准镜像
-FROM redis
+		```shell
+		# redis为构建的基准镜像
+		FROM redis
 
-# 等同于FROM redis
-FROM redis:latest
+		# 等同于FROM redis
+		FROM redis:latest
 
-# 指定版本标签
-FROM redis:5.0
-```
+		# 指定版本标签
+		FROM redis:5.0
+		```
 
 * `RUN`会在当前镜像上执行shell命令，并且将结果提交至一个新的镜像，供Dockerfile指定的后续步骤所使用。`RUN <command>`
 ```shell
