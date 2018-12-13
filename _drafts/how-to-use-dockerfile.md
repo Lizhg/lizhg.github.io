@@ -32,30 +32,24 @@ INSTRUCTION arguments
 ```
 
 * `FROM`指令会初始化构建环境并设置基础镜像，后续的指令都将在这个环境下得到执行。正因为如此，`Dockerfile`必须以`FROM`指令开头，唯一的例外是`ARG`指令。
-
 ```shell
 # 格式如下
 # FROM <image> [AS <name>]
 # FROM <image>[:<tag>] [AS <name>]
 # FROM <image>[@<digest>] [AS <name>]
-
 # 指定centos为构建的基础镜像,默认获取最新的(latest)镜像
 FROM centos
-
 # 等同于FROM centos
 FROM centos:latest
-
 # 指定版本标签
 FROM centos:5
 ```
 
 * `RUN`指令会在当前镜像上执行指定命令，并且将结果提交至一个新的镜像，供`Dockerfile`中指定下一步继续使用。
-
 ```shell
 # 格式如下
 # RUN <command>
 # RUN ["executable", "param1", "param2"]
-
 RUN mkdir /data
 ```
 
