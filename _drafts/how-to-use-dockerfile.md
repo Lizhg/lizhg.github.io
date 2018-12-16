@@ -31,7 +31,7 @@ Sending build context to Docker daemon  6.51 MB
 
 * `FROM`指令会初始化构建环境并设置基础镜像，后续的指令都将在这个环境下得到执行。正因为如此，`Dockerfile`必须以`FROM`指令开头，唯一的例外是`ARG`指令。
   ~~~shell
-  # 格式如下
+  # 格式:
   # FROM <image> [AS <name>]
   # FROM <image>[:<tag>] [AS <name>]
   # FROM <image>[@<digest>] [AS <name>]
@@ -48,13 +48,22 @@ Sending build context to Docker daemon  6.51 MB
 
 * `RUN`指令会在当前镜像上执行指定命令，并且将结果提交至一个新的镜像，供`Dockerfile`中指定下一步继续使用。
   ```shell
-  # 格式如下
+  # 格式:
   # RUN <command>
   # RUN ["executable", "param1", "param2"]
+
   RUN mkdir /data
   ```
 
 * `CMD`指令，一个`Dockerfile`中只能存在一个`CMD`指令，如果存在多个的话，只有最后一个`CMD`指令会生效。
+`CMD`的主要目的在于为执行的容器提供一些默认值，这些默认值可以是一个可执行文件，也可以省略可执行文件，不过在这种情况下需要指定`ENTRYPOINT`指令。
+   ```shell
+  # 格式:
+  # CMD ["executable","param1","param2"]
+  # CMD ["param1","param2"]
+  # CMD command param1 param2
+
+  ```
 
 * `ENTRYPOINT`
 
