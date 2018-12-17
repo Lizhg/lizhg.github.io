@@ -59,13 +59,20 @@ Sending build context to Docker daemon  6.51 MB
 `CMD`的主要目的在于为执行的容器提供一些默认值，这些默认值可以是一个可执行文件，也可以省略可执行文件，不过在这种情况下需要指定`ENTRYPOINT`指令。
    ```shell
   # 格式:
-  # CMD ["executable","param1","param2"]
-  # CMD ["param1","param2"]
-  # CMD command param1 param2
+  # CMD ["executable","param1","param2"] (exec form, this is the preferred form)
+  # CMD ["param1","param2"] (as default parameters to ENTRYPOINT)
+  # CMD command param1 param2 (shell form)
 
+  # CMD通过 /bin/sh -c 执行
+  FROM ubuntu
+  CMD echo "This is a test." | wc -
+
+  # 通过 /usr/bin/wc 执行
+  FROM ubuntu
+  CMD ["/usr/bin/wc","--help"]
   ```
 
-* `ENTRYPOINT`
+* `ENTRYPOINT`指令
 
 
 * `EXPOSE`命令的作用是通知容器运行期间监听指定的网络端口，同时也可以指定传输协议，默认为TCP。
