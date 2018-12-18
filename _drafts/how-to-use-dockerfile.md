@@ -56,7 +56,7 @@ Sending build context to Docker daemon  6.51 MB
   ```
 
 * `CMD`指令，一个`Dockerfile`中只能存在一个`CMD`指令，如果存在多个的话，只有最后一个`CMD`指令会生效。
-`CMD`的主要目的在于为执行的容器提供一些默认值，这些默认值可以是一个可执行文件，也可以省略可执行文件，不过在这种情况下需要指定`ENTRYPOINT`指令。
+`CMD`的主要目的在于为容器启动后提供默认值的可执行命令或参数，也可以省略命令，不过在这种情况下需要指定`ENTRYPOINT`指令。
    ```shell
   # 格式:
   # CMD ["executable","param1","param2"] (exec form, this is the preferred form)
