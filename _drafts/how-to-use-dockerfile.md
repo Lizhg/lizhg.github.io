@@ -72,12 +72,22 @@ Sending build context to Docker daemon  6.51 MB
   CMD ["/usr/bin/wc","--help"]
   ```
 
-* `ENTRYPOINT`指令
+* `ENTRYPOINT`指令指定容器启动时执行的命令及参数。可以在使用`docker run`启动容器时通过加上`--entrypoint`对其进行覆盖。
+  ```shell
+  # 格式:
+  # ENTRYPOINT ["executable", "param1", "param2"] (exec form, preferred)
+  # ENTRYPOINT command param1 param2 (shell form)
 
+  FROM ubuntu
+  ENTRYPOINT ["top", "-b"]
+  CMD ["-c"]
+  ```
 
 * `EXPOSE`命令的作用是通知容器运行期间监听指定的网络端口，同时也可以指定传输协议，默认为TCP。
-`EXPOSE <port> [<port>/<protocol>...]`
   ```shell
+  # 格式:
+  # EXPOSE <port> [<port>/<protocol>...]
+
   # protocol不是tcp时，需要显示指定
   EXPOSE 80/udp
 
@@ -92,8 +102,8 @@ Sending build context to Docker daemon  6.51 MB
 
 * `ADD`命令将指定路径的文件或文件夹复制到**镜像**内指定路径下。
   ```shell
-  ADD [--chown=<user>:<group>] <src>... <dest>
-  ADD [--chown=<user>:<group>] [<src>,... <dest>]
+  # ADD [--chown=<user>:<group>] <src>... <dest>
+  # ADD [--chown=<user>:<group>] [<src>,... <dest>]
   # 添加文件到`WORKDIR`/relativeDir/
   ADD test relativeDir/
 
