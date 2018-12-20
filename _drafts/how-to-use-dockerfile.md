@@ -93,7 +93,7 @@ Sending build context to Docker daemon  6.51 MB
   EXPOSE 80/tcp
   EXPOSE 80/udp
   ```
-如果要覆盖`EXPOSE`，可以在运行时通过`-p`指定
+  如果要覆盖`EXPOSE`，可以在运行时通过`-p`指定
   ```shell
   docker run -p 80:80/tcp -p 80:80/udp
   ```
