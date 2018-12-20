@@ -19,9 +19,7 @@ Sending build context to Docker daemon  6.51 MB
 ➜ docker build -f /path/to/a/Dockerfile .
 ```
 
-## 编写Dockerfile
-
-基本规则:
+## 基本编写规则
 
 * `Dockerfile`指令不区分大小写，但是为了更容易区分命令与参数，通常将命令大写
   ```shell
@@ -112,6 +110,14 @@ Sending build context to Docker daemon  6.51 MB
   ```
 注意：*src路径必须在构建镜像时指定的环境(路径)内部*
 
+
+## 案例
+
+基于centos搭建一个web环境
+```shell
+FROM centos:7
+RUN yum install java-1.8.0-openjdk
+```
 
 ## 引用
 
