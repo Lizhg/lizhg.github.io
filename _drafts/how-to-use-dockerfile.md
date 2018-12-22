@@ -116,7 +116,9 @@ Sending build context to Docker daemon  6.51 MB
 基于centos搭建一个web环境
 ```shell
 FROM centos:7
-RUN yum install java-1.8.0-openjdk
+RUN yum install java-1.8.0-openjdk \
+  && install wget \
+  && wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.14/bin/apache-tomcat-9.0.14.tar.gz \
 ```
 
 ## 引用

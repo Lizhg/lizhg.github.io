@@ -77,12 +77,12 @@ Docker是开发以及运维人员通过容器来开发，部署和运行应用�
    ➜ yum install wget
 
    # 下载并解压到tomcat9文件夹
-   ➜ wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.12/bin/apache-tomcat-9.0.12.tar.gz
-   ➜ tar xzf apache-tomcat-9.0.12.tar.gz
-   ➜ mv apache-tomcat-9.0.12 tomcat9
+   ➜ wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.14/bin/apache-tomcat-9.0.14.tar.gz
+   ➜ tar xzf apache-tomcat-9.0.14.tar.gz
+   ➜ mv apache-tomcat-9.0.14 tomcat9
 
    # 删除无用文件
-   ➜ rm -r apache-tomcat-9.0.12.tar.gz
+   ➜ rm -r apache-tomcat-9.0.14.tar.gz
 
    # 配置环境变量
    ➜ echo "export CATALINA_HOME="/usr/local/tomcat9"" >> ~/.bashrc
