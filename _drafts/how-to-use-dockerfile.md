@@ -118,12 +118,14 @@ Sending build context to Docker daemon  6.51 MB
 1. 创建`Dockerfile`文件，内容如下：
    ```shell
    FROM centos:7
-   RUN yum install java-1.8.0-openjdk \
-     && install wget \
-     && wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.14/bin/ apache-tomcat-9.0.14.tar.gz \
+   RUN yum install -y java-1.8.0-openjdk \
+     && yum install -y wget \
+     && wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.14/bin/apache-tomcat-9.0.14.tar.gz \
      && mkdir -p /usr/local/tomcat \
      && tar -xzf apache-tomcat-9.0.14.tar.gz -C /usr/local/tomcat --strip-components=1 \
-     ENTRYPOINT ["/usr/local/tomcat/bin/startup.sh"]
+     && rm -r apache-tomcat-9.0.14.tar.gz
+   EXPOSE 80/tcp
+   ENTRYPOINT ["/usr/local/tomcat/bin/startup.sh"]
    ```
 
 2. 在`Dockerfile`文件所在目录执行 `docker build -t my-env:v1 .`，其中`my-env`为镜像名称，`v1`为版本号，`.`指当前目录。
