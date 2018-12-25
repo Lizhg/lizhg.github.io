@@ -84,10 +84,6 @@ Docker是开发以及运维人员通过容器来开发，部署和运行应用�
    # 删除无用文件
    ➜ rm -r apache-tomcat-9.0.14.tar.gz
 
-   # 配置环境变量
-   ➜ echo "export CATALINA_HOME="/usr/local/tomcat9"" >> ~/.bashrc
-   ➜ source ~/.bashrc
-
    # 验证，启动成功后即可在宿主机上访问：http://localhost:8000/
    ➜ cd /usr/local/tomcat9
    ➜ ./bin/startup.sh

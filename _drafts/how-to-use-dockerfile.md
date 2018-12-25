@@ -125,7 +125,7 @@ Sending build context to Docker daemon  6.51 MB
      && tar -xzf apache-tomcat-9.0.14.tar.gz -C /usr/local/tomcat --strip-components=1 \
      && rm -r apache-tomcat-9.0.14.tar.gz
    EXPOSE 80/tcp
-   ENTRYPOINT ["/usr/local/tomcat/bin/startup.sh"]
+   EXPOSE 80/udp
    ```
 
 2. 在`Dockerfile`文件所在目录执行 `docker build -t my-env:v1 .`，其中`my-env`为镜像名称，`v1`为版本号，`.`指当前目录。
