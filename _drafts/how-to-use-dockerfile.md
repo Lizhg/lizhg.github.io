@@ -127,6 +127,21 @@ Sending build context to Docker daemon  6.51 MB
    EXPOSE 80/tcp
    EXPOSE 80/udp
    ```
+   说明：
+   * 当我们在终端上执行`yum install`命令时，会提示是否确认安装。但是我们在使用`Dockerfile`时，不会有类似的输入确认环节，所以我们可以通过在命令中指定`-y`自动确认以跳过该环节，否则将导致构建失败。
+     ```shell
+     # yum install wget
+     # ...
+     # Total download size: 38 M
+     # Installed size: 122 M
+     # Is this ok [y/d/N]: 
+
+     yum install -y wget
+     ```
+   * 删除中间无用的产物
+     ```shell
+     rm -r apache-tomcat-9.0.14.tar.gz
+     ```
 
 2. 在`Dockerfile`文件所在目录执行 `docker build -t my-env:v1 .`，其中`my-env`为镜像名称，`v1`为版本号，`.`指当前目录。
 
