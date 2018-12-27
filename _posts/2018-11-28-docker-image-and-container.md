@@ -44,7 +44,7 @@ Docker是开发以及运维人员通过容器来开发，部署和运行应用�
    ansible/centos7-ansible   Ansible on Centos7                              119                  [OK]
    jdeathe/centos-ssh        CentOS-6 6.10 x86_64 / CentOS-7 7.5.1804 x86…   99                   [OK]
 
-   # 通常选择官方或star数较高的镜像
+   # 通常选择官方镜像, 无官方镜像可以选择star数较高
    ➜ docker pull centos
    ```
 
@@ -59,7 +59,12 @@ Docker是开发以及运维人员通过容器来开发，部署和运行应用�
        centos /bin/bash
    ```
 
-3. 安装Java
+3. 进入容器
+   ```shell
+   ➜ docker exec -it my-centos /bin/bash
+   ```
+
+4. 安装Java
    ```shell
    # 安装OpenJDK 8
    ➜ yum install java-1.8.0-openjdk
@@ -68,54 +73,59 @@ Docker是开发以及运维人员通过容器来开发，部署和运行应用�
    ➜ java -version
    ```
 
-4. 安装Tomcat9
+5. 安装Tomcat9
    ```shell
-   # 安装到/usr/local目录下
-   ➜ cd /usr/local
-
    # 安装wget
    ➜ yum install wget
 
+   # 安装到/usr/local目录下
+   ➜ mkdir -p /usr/local/tomcat
+
    # 下载并解压到tomcat9文件夹
    ➜ wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.14/bin/apache-tomcat-9.0.14.tar.gz
-   ➜ tar xzf apache-tomcat-9.0.14.tar.gz
-   ➜ mv apache-tomcat-9.0.14 tomcat9
+   ➜ tar -xzf apache-tomcat-9.0.14.tar.gz -C /usr/local/tomcat --strip-components=1
 
    # 删除无用文件
-   ➜ rm -r apache-tomcat-9.0.14.tar.gz
+   ➜ rm -f apache-tomcat-9.0.14.tar.gz
 
-   # 验证，启动成功后即可在宿主机上访问：http://localhost:8000/
-   ➜ cd /usr/local/tomcat9
-   ➜ ./bin/startup.sh
+   # 验证，启动成功后即可在宿主机上访问: http://localhost:8000/
+   ➜ /usr/local/tomcat/bin/startup.sh
    Using CATALINA_BASE:   /usr/local/tomcat9
    Using CATALINA_HOME:   /usr/local/tomcat9
    Using CATALINA_TMPDIR: /usr/local/tomcat9/temp
    Using JRE_HOME:        /usr
    Using CLASSPATH:       /usr/local/tomcat9/bin/bootstrap.jar:/usr/local/tomcat9/bin/tomcat-juli.jar
    Tomcat started.
+
+   # 除了用startup.sh脚本启动, 也可以使用catalina.sh脚本启动
+   ➜ /usr/local/tomcat/bin/catalina.sh run
+
+   # ctrl + D 可以退出当前伪终端
    ```
 
-5. 如果以后需要重复使用这个环境，可以使用`docker commit`命令将该容器制作成镜像
+6. `ctrl D`退出伪终端
+
+7. 如果以后需要重复使用这个环境，可以使用`docker commit`命令将该容器制作成镜像
    ```shell
-   # base-os为仓库名，v1为标签
-   ➜ docker commit my-centos base-os:v1
+   # 假如以web为仓库名，v1为标签
+   ➜ docker commit my-centos web:v1
    sha256:7d9c79fed1e506a1a232a8e72189a80e983fb4f38d5e5fc09755f085299bc23c
 
-   # 查看镜像，其中base-os的运行方式同第二步，只需将镜像名调整为base-os
+   # 查看镜像，其中web的运行方式同第二步，只需将镜像名调整为web
    # 用新镜像运行后的容器环境与我们在前面几步所搭建的环境一致。
    ➜ docker images
    REPOSITORY  TAG      IMAGE ID       CREATED         SIZE
-   base-os     v1       7d9c79fed1e5   5 seconds ago   459MB
+   web         v1       7d9c79fed1e5   5 seconds ago   459MB
    centos      latest   75835a67d134   1 hours ago     200MB
    ```
 
-6. 停止容器
+8. 停止容器
    ```shell
    # my-centos为第二步中定义了name参数，当然也可以使用container_id来代替name
    ➜ docker stop my-centos
    ```
 
-7. 再次启动容器
+9. 再次启动容器
    ```shell
    ➜ docker start my-centos
    ```
