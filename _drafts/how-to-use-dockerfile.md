@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "如何使用Dockerfile"
+title: "使用Dockerfile构建镜像"
 categories: docker
 ---
 
@@ -113,7 +113,7 @@ Sending build context to Docker daemon  6.51 MB
 
 ## 案例
 
-基于centos搭建一个web环境
+基于centos搭建tomcat环境
 
 1. 创建`Dockerfile`文件，完整内容如下：
    ```shell
@@ -144,24 +144,24 @@ Sending build context to Docker daemon  6.51 MB
      # Installed size: 122 M
      # Is this ok [y/d/N]: 
 
-     yum install -y wget
+     ➜ yum install -y wget
      ```
    * 清理缓存和垃圾文件，避免镜像过于臃肿。
      ```shell
-     rm -r apache-tomcat-9.0.14.tar.gz
-     yum clean all
+     ➜ rm -r apache-tomcat-9.0.14.tar.gz
+     ➜ yum clean all
      ```
 
 2. 在`Dockerfile`文件所在目录执行 `docker build -t web:v1 .`，其中`web`为镜像名称，`v1`为版本号，`.`指当前目录。
    ```shell
-   docker build -t web:v1 .
+   ➜ docker build -t web:v1 .
    Sending build context to Docker daemon  2.048kB
    ...
    ...
    Successfully built 1354c6469ae9
    Successfully tagged web:v1
 
-   docker images
+   ➜ docker images
    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
    web                 v1                  6875af3e6d82        38 seconds ago      390MB
    centos              7                   1e1148e4cc2c        3 weeks ago         202MB
@@ -169,7 +169,7 @@ Sending build context to Docker daemon  6.51 MB
 
 3. 验证镜像是否构建成功，执行以下命令后访问：http://localhost:8000/
    ```shell
-   docker run -dit -p 8000:8080 web:v1
+   ➜ docker run -dit -p 8000:8080 web:v1
    ```
 ## 引用
 
