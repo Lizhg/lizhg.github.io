@@ -128,10 +128,10 @@ Sending build context to Docker daemon  6.51 MB
      && wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.14/bin/apache-tomcat-9.0.14.tar.gz \
      && mkdir -p "$CATALINA_HOME" \
      && tar -xzf apache-tomcat-9.0.14.tar.gz -C /usr/local/tomcat --strip-components=1 \
-     && rm -r apache-tomcat-9.0.14.tar.gz
+     && rm -r apache-tomcat-9.0.14.tar.gz \
+     && yum clean all
 
    EXPOSE 80/tcp
-   EXPOSE 80/udp
 
    CMD ["catalina.sh", "run"]
    ```
@@ -146,24 +146,30 @@ Sending build context to Docker daemon  6.51 MB
 
      yum install -y wget
      ```
-   * 删除垃圾文件
+   * 清理缓存和垃圾文件，避免镜像过于臃肿。
      ```shell
      rm -r apache-tomcat-9.0.14.tar.gz
+     yum clean all
      ```
 
-2. 在`Dockerfile`文件所在目录执行 `docker build -t my-env:v1 .`，其中`my-env`为镜像名称，`v1`为版本号，`.`指当前目录。
+2. 在`Dockerfile`文件所在目录执行 `docker build -t web:v1 .`，其中`web`为镜像名称，`v1`为版本号，`.`指当前目录。
    ```shell
-   docker build -t my-env:v1 .
+   docker build -t web:v1 .
    Sending build context to Docker daemon  2.048kB
    ...
    ...
    Successfully built 1354c6469ae9
-   Successfully tagged my-env:v1
+   Successfully tagged web:v1
+
+   docker images
+   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+   web                 v1                  6875af3e6d82        38 seconds ago      390MB
+   centos              7                   1e1148e4cc2c        3 weeks ago         202MB
    ```
 
 3. 验证镜像是否构建成功，执行以下命令后访问：http://localhost:8000/
    ```shell
-   docker run -dit -p 8000:8080 my-env:v1
+   docker run -dit -p 8000:8080 web:v1
    ```
 ## 引用
 
