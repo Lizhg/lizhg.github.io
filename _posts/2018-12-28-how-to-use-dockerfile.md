@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "使用Dockerfile构建镜像"
+title: "使用 Dockerfile 构建镜像"
 categories: docker
 ---
 
