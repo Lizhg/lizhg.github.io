@@ -171,6 +171,8 @@ Sending build context to Docker daemon  6.51 MB
    ```shell
    ➜ docker run -dit -p 8000:8080 web:v1
    ```
-## 引用
 
-* [https://docs.docker.com/engine/reference/builder](https://docs.docker.com/engine/reference/builder)
+
+## 参考链接
+
+* [Docker官方手册](https://docs.docker.com/engine/reference/builder)

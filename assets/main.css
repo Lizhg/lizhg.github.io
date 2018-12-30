@@ -365,16 +365,19 @@ table {
 .post-content {
   margin-bottom: 30px; }
   .post-content h2 {
+     margin-top: 36px;
     font-size: 24px; }
     @media screen and (min-width: 800px) {
       .post-content h2 {
         font-size: 24px; } }
   .post-content h3 {
+    margin-top: 26px;
     font-size: 22px; }
     @media screen and (min-width: 800px) {
       .post-content h3 {
         font-size: 22px; } }
   .post-content h4 {
+    margin-top: 20px;
     font-size: 20px; }
     @media screen and (min-width: 800px) {
       .post-content h4 {
@@ -395,7 +398,7 @@ table {
   .post-content h4,
   .post-content h5,
   .post-content h6 {
-    color: #111;
+    color: #222;
   }
 
 /**
