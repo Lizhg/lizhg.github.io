@@ -408,3 +408,7 @@ table {
   color: #6a737d;
   font-style: normal;
 }
+
+.post-content :not(pre) > code {
+  color: #e96900;
+}
