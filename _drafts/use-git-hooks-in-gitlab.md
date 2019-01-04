@@ -18,7 +18,7 @@ categories: git
 	+ `prepare-commit-msg`
 	+ `commit-msg`
 	+ `post-commit `
-	+ `applypatch-msg.`
+	+ `applypatch-msg`
 	+ `pre-applypatch`
 	+ `post-applypatch`
 	+ `pre-rebase`
