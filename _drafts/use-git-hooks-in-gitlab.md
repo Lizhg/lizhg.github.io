@@ -30,11 +30,14 @@ categories: git
 	+ `post-receive`
 
 ## GitLab
-`GitLab` 是基于 `Git` 的在线仓库管理工具，也就是常说的 `Git` 服务器。`GitLab`分为免费的社区版以及收费的企业版。
+`GitLab` 是基于 `Git` 的开源在线仓库管理工具。除了基本的 Git 仓库管理，GitLab 还支持多人协作、持续集成等功能。
+当前有以下两个版本：
+* GitLab Community Edition (CE)，社区免费版
+* GitLab Enterprise Edition (EE)，支持额外功能特性的企业版
+
+GitLab 作为 Git 服务器，自然也支持 Git Hooks(server-side)。
 
 
+## 如何使用 Git Hooks
 
 
-
-
-## 在部署的 GitLab 服务器中使用 Git Hooks
