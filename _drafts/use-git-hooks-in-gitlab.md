@@ -35,24 +35,47 @@ Git 可以在特定的动作发生时触发自定义脚本，这一类动作称�
 除了使用 shell，我们也可以选择 Ruby 或者 Python 这些其他语言来编写脚本。
 
 ## 如何使用 Client-Side Hooks
-客户端钩子脚本存储在 Git 项目目录下的 `.git/hooks` 文件夹内。当我们初始化一个 Git 项目时，会自动在 `hooks` 目录下创建示例脚本。下面以
+客户端钩子脚本存储在 Git 项目目录下的 `.git/hooks` 文件夹内。当我们初始化一个 Git 项目时，会自动在 `hooks` 目录下创建示例脚本。下面以 `post-commit` 为例。
 
 1. 创建 Git 仓库
-```shell
-➜ mkdir test && cd test
-➜ git init
-➜ cd .git/hooks
-➜ ls
-applypatch-msg.sample  pre-applypatch.sample      pre-push.sample
-commit-msg.sample      pre-commit.sample          pre-rebase.sample
-post-update.sample     prepare-commit-msg.sample  update.sample
-```
+   ```shell
+   ➜ mkdir test && cd test
+   ➜ git init
+   ➜ cd .git/hooks
+   ➜ ls
+   applypatch-msg.sample  pre-applypatch.sample      pre-push.sample
+   commit-msg.sample      pre-commit.sample          pre-rebase.sample
+   post-update.sample     prepare-commit-msg.sample  update.sample
+   ```
 
-2. 创建 `pre-commit` 脚本，并使用 Python 来编写
-```shell
-➜ touch pre-commit
-```
+2. 创建 `post-commit` 脚本
+   ```shell
+   ➜ touch post-commit
+   ```
 
+3. 在 `post-commit` 脚本中加入以下内容
+   ```python
+   #!/usr/bin/env python
+
+   # 提交时,会在终端打印 hello,git hooks.
+   print "hello,git hooks."
+   ```
+
+4. 验证脚本
+   ```shell
+   # 回到仓库更目录下
+   ➜ cd ../../
+
+   ➜ echo "test" >> a.txt
+   ➜ git add a.txt
+
+   # 自动调用 post-commit
+   ➜ git commit -m "test git hooks"
+   hello,git hooks.
+   [master b74c662] test git hooks
+    1 file changed, 1 insertion(+)
+    create mode 100644 a.txt
+   ```
 
 ## 如何使用 Server-Side Hooks
 
