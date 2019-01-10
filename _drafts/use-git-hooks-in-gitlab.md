@@ -35,8 +35,23 @@ Git 可以在特定的动作发生时触发自定义脚本，这一类动作称�
 除了使用 shell，我们也可以选择 Ruby 或者 Python 这些其他语言来编写脚本。
 
 ## 如何使用 Client-Side Hooks
-客户端钩子脚本存储在 Git 项目目录下的 `.git/hooks` 文件夹内。
+客户端钩子脚本存储在 Git 项目目录下的 `.git/hooks` 文件夹内。当我们初始化一个 Git 项目时，会自动在 `hooks` 目录下创建示例脚本。下面以
 
+1. 创建 Git 仓库
+```shell
+➜ mkdir test && cd test
+➜ git init
+➜ cd .git/hooks
+➜ ls
+applypatch-msg.sample  pre-applypatch.sample      pre-push.sample
+commit-msg.sample      pre-commit.sample          pre-rebase.sample
+post-update.sample     prepare-commit-msg.sample  update.sample
+```
+
+2. 创建 `pre-commit` 脚本，并使用 Python 来编写
+```shell
+➜ touch pre-commit
+```
 
 
 ## 如何使用 Server-Side Hooks
