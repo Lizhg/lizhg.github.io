@@ -7,12 +7,12 @@ categories: git
 ## 关于 Git Hooks
 Git 是一个分布式版本控制系统，目前最流行的版本控制系统之一。
 
-Git 可以在特定的动作发生时触发自定义脚本，这一类动作称作钩子；钩子分为 Client-Side Hooks 和 Server-Side Hooks 两类，也就是客户端钩子和服务端钩子。其中客户端钩子在本地触发，比如提交时；而服务端钩子则在 Git 服务器中触发，比如接收到来自客户端的推送时。[查看详细分类](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
+Git 可以在特定的动作发生时触发自定义脚本，这一类动作称作钩子；钩子分为 Client-Side Hooks 和 Server-Side Hooks 两类，也就是客户端钩子和服务端钩子。其中客户端钩子在本地触发，比如提交时；而服务端钩子则在 Git 服务器中触发，比如接收到来自客户端的推送时。[查看钩子详细分类](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
 
 除了使用 shell，我们也可以选择 Ruby 或者 Python 这些语言来编写脚本。
 
 ## 使用 Client-Side Hooks
-客户端钩子脚本存储在 Git 项目目录下的 `.git/hooks` 文件夹内。当我们初始化一个 Git 项目时，会自动在 `hooks` 目录下创建示例脚本。下面以 `post-commit` 为例。
+客户端钩子脚本存储在 Git 项目目录下的 `.git/hooks` 文件夹内。当我们初始化一个项目时，Git 会自动在 `hooks` 目录下创建示例脚本。下面以 `post-commit` 为例。
 
 1. 创建 Git 仓库
    ```shell
@@ -30,7 +30,7 @@ Git 可以在特定的动作发生时触发自定义脚本，这一类动作称�
    ➜ touch post-commit
    ```
 
-3. 以 Python 为例，在 `post-commit` 文件中加入以下内容
+3. 以 Python 为例，在 `post-commit` 文件中写入以下内容
    ```python
    #!/usr/bin/env python
    # -*- coding: UTF-8 -*-
@@ -39,7 +39,7 @@ Git 可以在特定的动作发生时触发自定义脚本，这一类动作称�
    print "hello,git hooks."
    ```
 
-4. 脚本需要被调用执行，所以为其添加可执行权限
+4. 添加可执行权限，以便脚本调用执行
    ```shell
    ➜ ls post-commit -l
    -rw-rw-r--  post-commit
@@ -51,7 +51,7 @@ Git 可以在特定的动作发生时触发自定义脚本，这一类动作称�
    -rwxrwxr-x  post-commit
    ```
 
-5. 验证脚本
+5. 进行 `commit` 操作，触发 `post-commit` 钩子
    ```shell
    # 回到仓库根目录下
    ➜ cd ../../
@@ -69,13 +69,13 @@ Git 可以在特定的动作发生时触发自定义脚本，这一类动作称�
 
 ## 使用 Server-Side Hooks
 
-在这之前，先介绍一下 GitLab。
+首先介绍一下 GitLab。
 GitLab 是基于 Git 的开源在线仓库管理工具，除了基本的 Git 仓库管理，GitLab 还支持多人协作、持续集成等功能。
 当前有以下两个版本：
 * GitLab Community Edition (CE)，社区免费版
 * GitLab Enterprise Edition (EE)，支持额外功能特性的企业版
 
-GitLab 作为 Git 服务器，自然也支持 Server-Side Hooks。
+GitLab 作为 Git 服务器，自然也支持 Server-Side Hooks。下面将讲解如何在 GitLab 服务器中使用 Server-Side Hooks。
 
 1. 进入 GitLab 服务器中对应项目文件夹
    ```shell
@@ -90,7 +90,7 @@ GitLab 作为 Git 服务器，自然也支持 Server-Side Hooks。
    post-receive  pre-receive  update
    ```
 
-2. 创建 `custom_hooks` 文件夹用于存放自定义钩子脚本，并创建 `post-receive` 脚本（在客户端 push 到 Git 服务器时，在服务器中被调用）
+2. 创建 `custom_hooks` 文件夹用于存放自定义钩子脚本，并创建 `post-receive` 脚本（客户端 push 到 Git 服务器时会触发 `post-receive` 钩子）
    ```shell
    ➜ mkdir custom_hooks
    ➜ cd custom_hooks
@@ -128,8 +128,9 @@ GitLab 作为 Git 服务器，自然也支持 Server-Side Hooks。
    To git@x.x.x.x:xxx/xxx.git
    ```
 
-可以看到我们之前在 `post-receive` 自定义脚本定义的消息在客户端进行 push 的时候打印出来了，说明 `post-receive` 脚本成功被调用了。
+可以看到我们在 `post-receive` 脚本中定义的消息在客户端进行 push 的时候打印出来了，说明客户端 push 时成功触发了服务端的 `post-receive` 钩子。
 
-关于 Git Hooks 的使用方法大致如上，用你喜欢的语言去编写你需要的脚本吧！
+## 参考链接
 
-
+* [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
+* [Custom Git Hooks In GitLab](https://docs.gitlab.com/ee/administration/custom_hooks.html#custom-git-hooks)
